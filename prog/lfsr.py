@@ -1,5 +1,6 @@
 def LFSR(seed, taps, m):
-    regs = seed
+    regs = seed[::-1]
+    print(regs)
     out= []
 
     if len(seed)<taps[len(taps)-1]:
@@ -11,13 +12,14 @@ def LFSR(seed, taps, m):
                 tapsum += regs[tap-1]
             nextin = tapsum % 2
 
-            out.append(regs[0])
+            out.append(regs[len(regs)-1])
+            print(out)
             regs = [nextin]+regs[:-1]
         out=str(out)
         return out
 
-#seed=[1,1,0,0,0,1,0,0,0,1]
-#taps=[2,4,5,7]
-#m=20
+#seed=[1,1,1,0,1,1]
+#taps=[2,3]
+#m=6
 #print(LFSR(seed,taps,m))
 #print(LFSR([1,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0], [16,14,13,11], 15))
